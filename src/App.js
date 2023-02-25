@@ -9,15 +9,15 @@ function App() {
     personal: {
       name: '',
       age: null,
-      gender: '',
+      gender: '', //second child
     },
     professional: {
       degree: '',
       designation: '',
-      organization: '',
+      organization: '', //second child
     },
     city: '',
-    state: '',
+    state: '', //first child
   });
 
   const handleChange = (data, name, type) => {
