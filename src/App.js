@@ -17,6 +17,7 @@ function App() {
       organization: '',
     },
     city: '',
+    state: '',
   });
 
   const handleChange = (data, name, type) => {
@@ -75,6 +76,7 @@ function App() {
 
       <h1>Place</h1>
       <TextInput name={'city'} handleChange={handleChange} type={null} />
+      <TextInput name={'state'} handleChange={handleChange} type={null} />
       {/* //this is just to format JSON , not required */}
       <JSONPretty data={state}></JSONPretty>
       {/* //this is just to format JSON , not required */}
