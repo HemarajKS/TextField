@@ -16,10 +16,19 @@ function App() {
       designation: '',
       organization: '',
     },
+    city: '',
   });
 
   const handleChange = (data, name, type) => {
     console.log(data, name, type);
+
+    if (!type) {
+      return setState((prevState) => ({
+        ...prevState,
+        [name]: data,
+      }));
+    }
+
     return setState((prevState) => ({
       ...prevState,
       [type]: {
@@ -61,6 +70,11 @@ function App() {
         handleChange={handleChange}
         type={'professional'}
       />
+
+      <hr />
+
+      <h1>Place</h1>
+      <TextInput name={'city'} handleChange={handleChange} type={null} />
       {/* //this is just to format JSON , not required */}
       <JSONPretty data={state}></JSONPretty>
       {/* //this is just to format JSON , not required */}
