@@ -21,7 +21,6 @@ function App() {
     city: '',
     state: '', //first child
     contact: {
-      countryCode: '',
       mobileNum: '',
     },
   });

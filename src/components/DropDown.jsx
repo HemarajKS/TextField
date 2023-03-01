@@ -12,7 +12,6 @@ const DropDown = (props) => {
         id="outlined-select-currency"
         select
         label={name}
-        defaultValue={defaultValue}
         onChange={(event) => {
           handleChange(event.target.value, name, type);
         }}
