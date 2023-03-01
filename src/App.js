@@ -3,10 +3,12 @@ import './App.css';
 import TextInput from './components/TextInput/TextInput';
 import JSONPretty from 'react-json-pretty'; //this is just to format JSON , not required
 import 'react-json-pretty/themes/monikai.css'; //this is just to format JSON , not required
+import DropDown from './components/DropDown';
 
 function App() {
   const [state, setState] = useState({
     personal: {
+      salutation: '',
       name: '',
       age: null,
       gender: '', //second child
@@ -18,6 +20,10 @@ function App() {
     },
     city: '',
     state: '', //first child
+    contact: {
+      countryCode: '',
+      mobileNum: '',
+    },
   });
 
   const handleChange = (data, name, type) => {
@@ -28,26 +34,31 @@ function App() {
         ...prevState,
         [name]: data,
       }));
+    } else {
+      return setState((prevState) => ({
+        ...prevState,
+        [type]: {
+          ...prevState[type],
+          [name]: data,
+        },
+      }));
     }
-
-    return setState((prevState) => ({
-      ...prevState,
-      [type]: {
-        ...prevState[type],
-        [name]: data,
-      },
-    }));
   };
 
   return (
     <div className="App">
       <h1>Personal</h1>
+      <DropDown
+        name={'salutation'}
+        handleChange={handleChange}
+        type={'personal'}
+        list={['Mr.', 'Mrs.', 'Ms.']}
+        defaultValue={'+91'}
+      />
       <TextInput name={'name'} handleChange={handleChange} type={'personal'} />
       <TextInput name={'age'} handleChange={handleChange} type={'personal'} />
       <TextInput
         name={'gender'}
-        isDropdown={true}
-        list={['male', 'female', 'other']}
         handleChange={handleChange}
         type={'personal'}
       />
@@ -77,6 +88,22 @@ function App() {
       <h1>Place</h1>
       <TextInput name={'city'} handleChange={handleChange} type={null} />
       <TextInput name={'state'} handleChange={handleChange} type={null} />
+
+      <hr />
+
+      <h1>Contact</h1>
+      <DropDown
+        name={'countryCode'}
+        handleChange={handleChange}
+        type={'contact'}
+        list={['+91', '+41', '+44', '+96', '+92']}
+        defaultValue={'+91'}
+      />
+      <TextInput
+        name={'mobileNum'}
+        handleChange={handleChange}
+        type={'contact'}
+      />
       {/* //this is just to format JSON , not required */}
       <JSONPretty data={state}></JSONPretty>
       {/* //this is just to format JSON , not required */}
