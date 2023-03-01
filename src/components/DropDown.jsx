@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 const DropDown = (props) => {
   const { name, handleChange, type, list, defaultValue } = props;
-  console.log('log', list);
+
   return (
     <div>
       {' '}

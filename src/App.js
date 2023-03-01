@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import TextInput from './components/TextInput/TextInput';
 import JSONPretty from 'react-json-pretty'; //this is just to format JSON , not required
@@ -26,6 +26,23 @@ function App() {
     },
   });
 
+  const [contact, setContact] = useState({
+    countryCode: '',
+    mobileNum: '',
+  });
+
+  useEffect(() => {
+    setState((prevState) => ({
+      ...prevState,
+      contact: {
+        ...prevState['contact'],
+        mobileNum: contact.countryCode + contact.mobileNum,
+      },
+    }));
+  }, [contact]);
+
+  console.log('contact', contact);
+
   const handleChange = (data, name, type) => {
     console.log(data, name, type);
 
@@ -35,6 +52,13 @@ function App() {
         [name]: data,
       }));
     } else {
+      if (name === 'mobileNum' || name === 'countryCode') {
+        return setContact((prevState) => ({
+          ...prevState,
+          [name]: data,
+        }));
+      }
+
       return setState((prevState) => ({
         ...prevState,
         [type]: {
