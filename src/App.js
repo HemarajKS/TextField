@@ -26,6 +26,9 @@ function App() {
     },
   });
 
+  //this change here I created intermediate state object both for country code
+  //and phone number, whenever these two fields change(useEffect) , adds countryCode+phonenumber
+  //add to original object , in your code its formData
   const [contact, setContact] = useState({
     countryCode: '',
     mobileNum: '',
