@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 
 const DropDown = (props) => {
-  const { name, handleChange, type, list, defaultValue } = props;
+  const { name, handleChange, type, list } = props;
 
   return (
     <div>
