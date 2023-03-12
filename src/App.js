@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import TextInput from './components/TextInput/TextInput';
 import JSONPretty from 'react-json-pretty'; //this is just to format JSON , not required
 import 'react-json-pretty/themes/monikai.css'; //this is just to format JSON , not required
-import DropDown from './components/DropDown';
-
+import Personal from './components/components/Personal';
+import Professional from './components/components/Professional';
+import Place from './components/components/Place';
+import MultiStep from 'react-multistep';
+import Contact from './components/components/Contact';
 function App() {
   const [state, setState] = useState({
     personal: {
@@ -73,63 +75,12 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Personal</h1>
-      <DropDown
-        name={'salutation'}
-        handleChange={handleChange}
-        type={'personal'}
-        list={['Mr.', 'Mrs.', 'Ms.']}
-        defaultValue={'+91'}
-      />
-      <TextInput name={'name'} handleChange={handleChange} type={'personal'} />
-      <TextInput name={'age'} handleChange={handleChange} type={'personal'} />
-      <TextInput
-        name={'gender'}
-        handleChange={handleChange}
-        type={'personal'}
-      />
-
-      <hr />
-
-      <h1>Professional</h1>
-
-      <TextInput
-        name={'degree'}
-        handleChange={handleChange}
-        type={'professional'}
-      />
-      <TextInput
-        name={'designation'}
-        handleChange={handleChange}
-        type={'professional'}
-      />
-      <TextInput
-        name={'organization'}
-        handleChange={handleChange}
-        type={'professional'}
-      />
-
-      <hr />
-
-      <h1>Place</h1>
-      <TextInput name={'city'} handleChange={handleChange} type={null} />
-      <TextInput name={'state'} handleChange={handleChange} type={null} />
-
-      <hr />
-
-      <h1>Contact</h1>
-      <DropDown
-        name={'countryCode'}
-        handleChange={handleChange}
-        type={'contact'}
-        list={['+91', '+41', '+44', '+96', '+92']}
-        defaultValue={'+91'}
-      />
-      <TextInput
-        name={'mobileNum'}
-        handleChange={handleChange}
-        type={'contact'}
-      />
+      <MultiStep activeStep={1} showNavigation={true} showTitles={false}>
+        <Personal handleChange={handleChange} />
+        <Professional handleChange={handleChange} />
+        <Place handleChange={handleChange} />
+        <Contact handleChange={handleChange} />
+      </MultiStep>
       {/* //this is just to format JSON , not required */}
       <JSONPretty data={state}></JSONPretty>
       {/* //this is just to format JSON , not required */}
